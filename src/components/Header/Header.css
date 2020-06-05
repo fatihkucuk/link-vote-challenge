@@ -1,5 +1,62 @@
-.header nav {
-  text-align: center;
-  padding: 15px;
-  background-color: #f6f6f6;
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid;
+  padding: 20px 0 10px 0;
+}
+
+.header-site-text {
+  align-self: flex-end;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.header-site-text-hepsiburada {
+  color: #949494;
+}
+
+.header-site-text-extension {
+  color: #666;
+}
+
+.header-info-text {
+  align-self: flex-end;
+  font-size: 25px;
+}
+
+.header-info-text-link {
+  color: #000;
+  font-weight: 800;
+}
+
+.header-info-text-vote {
+  color: #585858;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+.header-info-text-challenge {
+  color: #373737;
+}
+
+@media only screen and (max-width: 410px) {
+  .header-site-text {
+    font-size: 40px;
+  }
+
+  .header-info-text {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .header-site-text {
+    font-size: 35px;
+  }
+
+  .header-info-text {
+    font-size: 18px;
+  }
 }
