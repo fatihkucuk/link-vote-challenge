@@ -2,10 +2,25 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import { combinedReducers } from "./store/store";
+import createSagaMiddleware from "redux-saga";
+import listPageServices from "./pages/ListPage/store/services";
+import addLinkPageServices from "./pages/AddLinkPage/store/services";
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(combinedReducers, applyMiddleware(sagaMiddleware));
+
+function startServices() {
+  sagaMiddleware.run(listPageServices);
+  sagaMiddleware.run(addLinkPageServices);
+}
+startServices();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
