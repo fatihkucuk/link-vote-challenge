@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Toast from "react-bootstrap/Toast";
 import "./Toaster.css";
-import { TOASTER_TYPE } from "../../constants";
+import { TOASTER_TYPE, TOASTER_DELAY } from "../../constants";
 const Toaster = (props) => {
   const [show, setShow] = useState(true);
-  console.log(props.toaster.toasterType);
   return (
-    <Toast onClose={() => setShow(false)} show={show} delay={2000} autohide>
+    <Toast
+      onClose={() => setShow(false)}
+      show={show}
+      delay={props.delay || TOASTER_DELAY}
+      autohide
+    >
       <Toast.Body
         className={{ error: props.toaster.toasterType === TOASTER_TYPE.ERROR }}
       >

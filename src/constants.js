@@ -8,4 +8,6 @@ const TOASTER_TYPE = {
   SUCCESS: "Success",
   ERROR: "Error",
 };
-export { SORTING_ORDER, TOASTER_TYPE };
+
+const TOASTER_DELAY = 2000;
+export { SORTING_ORDER, TOASTER_TYPE, TOASTER_DELAY };

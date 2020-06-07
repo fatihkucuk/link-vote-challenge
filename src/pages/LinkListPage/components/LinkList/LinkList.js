@@ -8,7 +8,7 @@ import { setToaster } from "../../../../store/action-types";
 import Modal from "react-bootstrap/Modal";
 import Button from "../../../../components/Button/Button";
 import { withRouter } from "react-router-dom";
-
+import { TOASTER_DELAY } from "../../../../constants";
 export const LinkList = (props) => {
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [selectedLinkToDelete, setSelectedLinkToDelete] = useState();
@@ -33,7 +33,7 @@ export const LinkList = (props) => {
 
     setTimeout(() => {
       dispatch(setToaster({ show: false }));
-    }, 2000);
+    }, TOASTER_DELAY);
   };
 
   const handleSort = (order) => {
