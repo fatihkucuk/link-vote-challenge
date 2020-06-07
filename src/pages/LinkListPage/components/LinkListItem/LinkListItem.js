@@ -61,7 +61,9 @@ const LinkListItem = (props) => {
           </h4>
         )}
         {props.showUrl && (
-          <p className="link-list-group-item-url">({props.link.url})</p>
+          <a href={props.link.url} className="link-list-group-item-url">
+            ({props.link.url})
+          </a>
         )}
         {props.showButtons && (
           <div className="link-list-group-item-buttons">
