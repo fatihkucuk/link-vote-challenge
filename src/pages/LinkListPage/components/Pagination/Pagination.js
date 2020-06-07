@@ -4,19 +4,19 @@ import PropTypes from "prop-types";
 import { setPage } from "../../store/action-types";
 import { useSelector, useDispatch } from "react-redux";
 
-const Pagination = ({ page: { totalItemCount, pageNumber, pageCount } }) => {
+const Pagination = (props) => {
   const [pages, setPages] = useState([]);
 
   const dispatch = useDispatch();
 
-  const page = useSelector((state) => state.listPageReducer.page);
+  // const page = useSelector((state) => state.listPageReducer.page);
 
   useEffect(() => {
     fillPagesArray();
-  }, []);
+  }, [props.totalItemCount]);
 
   const getTotalPageCount = () => {
-    return Math.ceil(totalItemCount / pageCount);
+    return Math.ceil(props.totalItemCount / props.pageCount);
   };
 
   const fillPagesArray = () => {
@@ -35,7 +35,7 @@ const Pagination = ({ page: { totalItemCount, pageNumber, pageCount } }) => {
   const pagesHtml = pages.map((pageNumber) => {
     return (
       <Pager.Item
-        active={pageNumber === page.pageNumber}
+        active={pageNumber === props.pageNumber}
         key={pageNumber}
         onClick={handlePageChange.bind(null, pageNumber)}
       >
@@ -47,13 +47,13 @@ const Pagination = ({ page: { totalItemCount, pageNumber, pageCount } }) => {
   return (
     <Pager>
       <Pager.Prev
-        disabled={page.pageNumber === 1}
-        onClick={handlePageChange.bind(null, pageNumber - 1)}
+        disabled={props.pageNumber === 1}
+        onClick={handlePageChange.bind(null, props.pageNumber - 1)}
       />
       {pagesHtml}
       <Pager.Next
-        disabled={page.pageNumber * page.pageCount >= page.totalItemCount}
-        onClick={handlePageChange.bind(null, pageNumber + 1)}
+        disabled={props.pageNumber * props.pageCount >= props.totalItemCount}
+        onClick={handlePageChange.bind(null, props.pageNumber + 1)}
       />
     </Pager>
   );

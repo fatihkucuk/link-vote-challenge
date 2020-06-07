@@ -29,6 +29,7 @@ export const LinkList = (props) => {
 
   const handleConfirm = () => {
     dispatch(deleteLink(selectedLinkToDelete.id));
+    dispatch(getLinks({ page, order }));
     closePopup();
 
     setTimeout(() => {

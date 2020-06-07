@@ -78,3 +78,9 @@
 .link-list-group-item-delete-icon:hover {
   cursor: pointer;
 }
+
+@media only screen and (max-width: 420px) {
+  .link-list-group-item:first-child .link-list-group-item-header {
+    line-height: 50px !important;
+  }
+}

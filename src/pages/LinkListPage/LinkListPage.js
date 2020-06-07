@@ -17,7 +17,11 @@ const LinkListPage = (props) => {
       </div>
       {links.length > 0 && (
         <div className="pagination-container">
-          <Pagination page={page}></Pagination>
+          <Pagination
+            totalItemCount={page.totalItemCount}
+            pageNumber={page.pageNumber}
+            pageCount={page.pageCount}
+          ></Pagination>
         </div>
       )}
     </div>

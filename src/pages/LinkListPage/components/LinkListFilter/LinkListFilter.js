@@ -17,8 +17,8 @@ const LinkListFilter = (props) => {
         onChange={handleChange}
         defaultValue={defaultOrder}
       >
-        <option value={SORTING_ORDER.DESC}>Most Voted (Z->A)</option>
-        <option value={SORTING_ORDER.ASC}>Less Voted (A->Z)</option>
+        <option value={SORTING_ORDER.DESC}>Most Voted</option>
+        <option value={SORTING_ORDER.ASC}>Less Voted</option>
       </Form.Control>
     </div>
   );
