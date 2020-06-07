@@ -1,5 +1,7 @@
 # Link Vote Challenge
 
+[DEMO](https://fatihkucuk.github.io/link-vote-challenge/)
+
 This is a link vote application. You can add/delete links. In addition you can up vote and down vote the link points.
 Also there is a sorting option which sorts the link as most voted or less voted.
 
