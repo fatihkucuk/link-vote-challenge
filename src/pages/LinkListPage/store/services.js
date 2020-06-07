@@ -9,9 +9,9 @@ export function* getLinks({ page, order }) {
     let links = JSON.parse(localStorage.getItem("links")) || [];
     links = links.sort((a, b) => {
       if (order === SORTING_ORDER.DESC) {
-        return b.points - a.points || b.name.localeCompare(a.name);
+        return b.points - a.points || b.updatedAt - a.updatedAt;
       }
-      return a.points - b.points || a.name.localeCompare(b.name);
+      return a.points - b.points || b.updatedAt - a.updatedAt;
     });
     const pageIndex = pageNumber - 1;
     const slicedLinks = links.slice(
@@ -69,6 +69,7 @@ export function* upVoteLink(action) {
     let links = JSON.parse(localStorage.getItem("links")) || [];
     const upVotedLink = links.find((link) => link.id === action.link.id);
     upVotedLink.points++;
+    upVotedLink.updatedAt = new Date().getTime();
     const stringifiedLinks = JSON.stringify(links);
     localStorage.setItem("links", stringifiedLinks);
     yield put(actionTypes.upVoteLinkSuccess(upVotedLink));

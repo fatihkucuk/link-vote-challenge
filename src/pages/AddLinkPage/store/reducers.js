@@ -6,6 +6,7 @@ const initialState = {
     name: "",
     url: "",
     points: 0,
+    updatedAt: undefined,
   },
 };
 

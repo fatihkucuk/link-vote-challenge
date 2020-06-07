@@ -11,6 +11,7 @@ function* addLink({ link }) {
       name: link.name,
       url: link.url,
       points: 0,
+      updatedAt: null,
     };
     let links = JSON.parse(localStorage.getItem("links")) || [];
     links.push(newLink);
