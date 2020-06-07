@@ -1,0 +1,20 @@
+.link-list-group {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.popup-text {
+  text-align: center;
+  margin: 0;
+}
+
+.popup-text.question {
+  font-size: 20px;
+  color: #585858;
+}
+
+.popup-text.link-name {
+  font-weight: 700;
+}

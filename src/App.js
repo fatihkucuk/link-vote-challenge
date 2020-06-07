@@ -6,6 +6,28 @@ import routes from "./routes";
 import Container from "react-bootstrap/Container";
 
 function App() {
+  const defaultLinks = [
+    {
+      id: 1,
+      name: "Hacker News",
+      url: "https://news.ycombinator.com/",
+      points: 3,
+    },
+    {
+      id: 2,
+      name: "Product Hunt",
+      url: "https://producthunt.com/",
+      points: 6,
+    },
+    {
+      id: 3,
+      name: "REDDIT",
+      url: "https://www.reddit.com/",
+      points: 3,
+    },
+  ];
+  localStorage.clear();
+  localStorage.setItem("links", JSON.stringify(defaultLinks));
   return (
     <BrowserRouter>
       <Container fluid>

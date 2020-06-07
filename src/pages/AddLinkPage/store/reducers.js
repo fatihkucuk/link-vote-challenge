@@ -1,27 +1,24 @@
-import * as actionTypes from './action-types';
+import * as actionTypes from "./action-types";
+
 const initialState = {
-  items: [],
+  link: {
+    id: undefined,
+    name: "",
+    url: "",
+    points: 0,
+  },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_ITEMS:
+    case actionTypes.ADD_LINK:
       return {
         ...state,
       };
-    case actionTypes.SET_ITEMS:
+    case actionTypes.ADD_LINK_SUCCESS:
       return {
         ...state,
-        items: action.items,
-      };
-    case actionTypes.DELETE_ITEM:
-      return {
-        ...state,
-      };
-    case actionTypes.SUCCESS_DELETE_ITEM:
-      return {
-        ...state,
-        items: [...state.items.filter((item) => item.id !== action.id)],
+        link: action.addedLink,
       };
     default:
       return state;

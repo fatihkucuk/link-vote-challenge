@@ -1,9 +1,9 @@
-import * as actionTypes from './action-types';
+import * as actionTypes from "./action-types";
 
-export const successGetItems = (items) => {
-  return actionTypes.setItems(items);
+export const addLink = (link) => {
+  return actionTypes.addLink(link);
 };
 
-export const successDeleteItem = (id) => {
-  return actionTypes.successDeleteItem(id);
+export const addLinkSuccess = (link) => {
+  return actionTypes.addLinkSuccess(link);
 };

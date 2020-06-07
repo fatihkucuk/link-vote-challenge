@@ -1,0 +1,79 @@
+.link-list-group-item {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  padding: 7px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+}
+
+.link-list-group-item:first-child {
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  background-color: #f6f6f6;
+}
+
+.link-list-group-item:first-child .box .box-text {
+  font-size: 60px;
+}
+
+.link-list-group-item:hover {
+  border: 1px solid #ddd;
+  background-color: #f6f6f6;
+}
+
+.link-list-group-item:nth-child(2) {
+  border-top: 3px solid #ececec;
+  border-radius: 0;
+  margin-bottom: 0;
+  padding-top: 15px;
+}
+
+.link-list-group-item:nth-child(2):hover {
+  border: none;
+  border-top: 3px solid #ececec;
+  background-color: #fff;
+}
+
+.link-list-group-item:last-child {
+  margin-bottom: 0px;
+}
+
+.link-list-group-item-right {
+  margin-left: 15px;
+}
+
+.link-list-group-item-header {
+  margin-bottom: 0;
+}
+
+.link-list-group-item-url {
+  color: #aaaaaa;
+}
+
+.vote-button-text {
+  display: inline;
+  color: #aaaaaa;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.link-list-group-item-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link-list-group-item-buttons .up-vote-button,
+.link-list-group-item-buttons .down-vote-button {
+  cursor: pointer;
+}
+
+.link-list-group-item-delete-icon {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+}
+
+.link-list-group-item-delete-icon:hover {
+  cursor: pointer;
+}

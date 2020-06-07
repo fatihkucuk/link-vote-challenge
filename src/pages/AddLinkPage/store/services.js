@@ -1,34 +1,22 @@
-import { takeLatest, put, call } from "redux-saga/effects";
+import { put, takeLatest } from "redux-saga/effects";
 import * as actionTypes from "./action-types";
-import { successGetItems, successDeleteItem } from "./actions";
-import { setLoading } from "../../../store/actions";
-// import { apiEndpoint } from '../../../constants';
+import { v4 as uuidv4 } from "uuid";
 
-export function* getItems(action) {
-  yield put(setLoading(true));
+function* addLink({ link, callback }) {
   try {
-    // const response = yield call(axios.get, apiEndpoint);
-    // yield put(successGetItems(response.data));
+    const newLink = {
+      id: uuidv4(),
+      name: link.name,
+      url: link.url,
+      points: 0,
+    };
+    yield put(actionTypes.addLinkSuccess(newLink));
   } catch (error) {
     alert(error); //For just demo purpose
   } finally {
-    yield put(setLoading(false));
   }
 }
 
-export function* deleteItem(action) {
-  yield put(setLoading(true));
-  try {
-    // yield call(axios.delete, `${apiEndpoint}/${action.id}`);
-    // yield put(successDeleteItem(action.id));
-  } catch (error) {
-    yield alert(error); //For just demo purpose
-  } finally {
-    yield put(setLoading(false));
-  }
-}
-
-export default function* listPageServices() {
-  yield takeLatest(actionTypes.GET_ITEMS, getItems);
-  yield takeLatest(actionTypes.DELETE_ITEM, deleteItem);
+export default function* detailPageServices() {
+  yield takeLatest(actionTypes.ADD_LINK, addLink);
 }

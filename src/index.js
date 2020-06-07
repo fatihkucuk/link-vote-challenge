@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { combinedReducers } from "./store/store";
 import createSagaMiddleware from "redux-saga";
-import listPageServices from "./pages/ListPage/store/services";
+import listPageServices from "./pages/LinkListPage/store/services";
 import addLinkPageServices from "./pages/AddLinkPage/store/services";
 
 const sagaMiddleware = createSagaMiddleware();

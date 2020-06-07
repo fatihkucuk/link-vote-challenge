@@ -1,0 +1,28 @@
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}
+
+.link-list-page-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.link-list-container {
+  padding: 25px;
+}
+
+.link-submit-container {
+}
+
+.divider {
+  width: 100%;
+  height: 3px;
+  background-color: #ececec;
+  margin-top: 20px;
+}
+
+.link-list-filter-row {
+  border-top: 3px solid #ececec;
+  padding-top: 10px;
+}

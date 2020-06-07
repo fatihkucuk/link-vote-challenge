@@ -1,14 +1,14 @@
-import LinkList from "./pages/ListPage/LinkList";
-import AddLink from "./pages/AddLinkPage/AddLink";
+import LinkListPage from "./pages/LinkListPage/LinkListPage";
+import AddLinkPage from "./pages/AddLinkPage/AddLinkPage";
 
 const routes = [
   {
     path: "/home",
-    component: LinkList,
+    component: LinkListPage,
   },
   {
     path: "/add-link",
-    component: AddLink,
+    component: AddLinkPage,
   },
 ];
 
