@@ -6,7 +6,7 @@ const initialState = {
   order: SORTING_ORDER.DEFAULT,
   page: {
     pageNumber: 1,
-    pageCount: 3,
+    pageCount: 5,
     totalItemCount: 0,
   },
 };
