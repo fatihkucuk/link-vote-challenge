@@ -1,14 +1,20 @@
-import * as actionTypes from './action-types';
+import * as actionTypes from "./action-types";
+import { TOASTER_TYPE } from "../constants";
 const initialState = {
-  loading: false,
+  toaster: {
+    show: false,
+    linkName: "",
+    message: "",
+    toasterType: TOASTER_TYPE.SUCCESS,
+  },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_LOADING:
+    case actionTypes.SET_TOASTER:
       return {
         ...state,
-        loading: action.loading,
+        toaster: action.toaster,
       };
     default:
       return state;

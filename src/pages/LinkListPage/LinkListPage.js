@@ -1,39 +1,25 @@
 import React from "react";
-import LinkSubmit from "./components/LinkSubmit/LinkSubmit";
-import LinkListFilter from "./components/LinkListFilter/LinkListFilter";
 import LinkList from "./components/LinkList/LinkList";
-import LinkListItem from "./components/LinkListItem/LinkListItem";
 import Pagination from "./components/Pagination/Pagination";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import "./LinkListPage.css";
+import { useSelector } from "react-redux";
+import Toaster from "../../components/Toaster/Toaster";
 
 const LinkListPage = (props) => {
+  const links = useSelector((state) => state.listPageReducer.links);
+  const page = useSelector((state) => state.listPageReducer.page);
+  const toaster = useSelector((state) => state.rootReducer.toaster);
   return (
     <div className="link-list-page-container">
-      {/* <div className="link-submit-container"> */}
-      {/* <LinkSubmit></LinkSubmit> */}
-      {/* <ul className="link-list-group">
-          <LinkListItem
-            name="Submit a link"
-            url=""
-            points="+"
-            boxSubtext=""
-            showHeader={true}
-            showUrl={false}
-            showButtons={false}
-          />
-        </ul> */}
-      {/* </div> */}
-      {/* <div className="link-list-filter-container">
-        <LinkListFilter></LinkListFilter>
-      </div> */}
+      {toaster.show && <Toaster toaster={toaster} />}
       <div className="link-list-container">
         <LinkList />
       </div>
-      <div className="pagination-container">
-        <Pagination></Pagination>
-      </div>
+      {links.length > 0 && (
+        <div className="pagination-container">
+          <Pagination page={page}></Pagination>
+        </div>
+      )}
     </div>
   );
 };

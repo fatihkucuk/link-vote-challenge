@@ -1,54 +1,112 @@
 import { takeLatest, put } from "redux-saga/effects";
 import * as actionTypes from "./action-types";
-import {
-  getLinksSuccess,
-  deleteLinkSuccess,
-  sortLinksSuccess,
-} from "./actions";
+import { setToaster } from "../../../store/action-types";
+import { SORTING_ORDER, TOASTER_TYPE } from "../../../constants";
 
-export function* getLinks(action) {
+export function* getLinks({ page, order }) {
   try {
-    const links = JSON.parse(localStorage.getItem("links"));
-    yield put(getLinksSuccess(links));
+    const { pageNumber, pageCount } = page;
+    let links = JSON.parse(localStorage.getItem("links")) || [];
+    links = links.sort((a, b) => {
+      if (order === SORTING_ORDER.DESC) {
+        return b.points - a.points || b.name.localeCompare(a.name);
+      }
+      return a.points - b.points || a.name.localeCompare(b.name);
+    });
+    const pageIndex = pageNumber - 1;
+    const slicedLinks = links.slice(
+      pageIndex * pageCount,
+      pageIndex * pageCount + pageCount
+    );
+    yield put(
+      actionTypes.getLinksSuccess({
+        links: slicedLinks,
+        totalItemCount: links.length,
+      })
+    );
   } catch (error) {
-    alert(error); //For just demo purpose
-  } finally {
+    yield put(
+      setToaster({
+        show: true,
+        linkName: "",
+        message: error.message,
+        toasterType: TOASTER_TYPE.ERROR,
+      })
+    );
   }
 }
 
 export function* deleteLink(action) {
   try {
-    let links = JSON.parse(localStorage.getItem("links"));
+    let links = JSON.parse(localStorage.getItem("links")) || [];
+    const link = links.find((link) => link.id === action.id);
     links = links.filter((link) => link.id !== action.id);
     const stringifiedLinks = JSON.stringify(links);
     localStorage.setItem("links", stringifiedLinks);
-    yield put(deleteLinkSuccess(action.id));
+    yield put(actionTypes.deleteLinkSuccess(action.id));
+    yield put(
+      setToaster({
+        show: true,
+        linkName: link.name,
+        message: "removed.",
+        toasterType: TOASTER_TYPE.SUCCESS,
+      })
+    );
   } catch (error) {
-    yield alert(error); //For just demo purpose
-  } finally {
+    yield put(
+      setToaster({
+        show: true,
+        linkName: "",
+        message: error.message,
+        toasterType: TOASTER_TYPE.ERROR,
+      })
+    );
   }
 }
 
-export function* sortLinks(action) {
+export function* upVoteLink(action) {
   try {
-    let links = JSON.parse(localStorage.getItem("links"));
-    links = links.sort((a, b) => {
-      if (action.order === "desc") {
-        return b.points - a.points || b.name.localeCompare(a.name);
-      }
-      return a.points - b.points || a.name.localeCompare(b.name);
-    });
+    let links = JSON.parse(localStorage.getItem("links")) || [];
+    const upVotedLink = links.find((link) => link.id === action.link.id);
+    upVotedLink.points++;
     const stringifiedLinks = JSON.stringify(links);
     localStorage.setItem("links", stringifiedLinks);
-    yield put(sortLinksSuccess(links));
+    yield put(actionTypes.upVoteLinkSuccess(upVotedLink));
   } catch (error) {
-    yield alert(error); //For just demo purpose
-  } finally {
+    yield put(
+      setToaster({
+        show: true,
+        linkName: "",
+        message: error.message,
+        toasterType: TOASTER_TYPE.ERROR,
+      })
+    );
+  }
+}
+
+export function* downVoteLink(action) {
+  try {
+    let links = JSON.parse(localStorage.getItem("links")) || [];
+    const downVotedLink = links.find((link) => link.id === action.link.id);
+    downVotedLink.points--;
+    const stringifiedLinks = JSON.stringify(links);
+    localStorage.setItem("links", stringifiedLinks);
+    yield put(actionTypes.downVoteLinkSuccess(downVotedLink));
+  } catch (error) {
+    yield put(
+      setToaster({
+        show: true,
+        linkName: "",
+        message: error.message,
+        toasterType: TOASTER_TYPE.ERROR,
+      })
+    );
   }
 }
 
 export default function* listPageServices() {
   yield takeLatest(actionTypes.GET_LINKS, getLinks);
   yield takeLatest(actionTypes.DELETE_LINK, deleteLink);
-  yield takeLatest(actionTypes.SORT_LINKS, sortLinks);
+  yield takeLatest(actionTypes.UP_VOTE_LINK, upVoteLink);
+  yield takeLatest(actionTypes.DOWN_VOTE_LINK, downVoteLink);
 }

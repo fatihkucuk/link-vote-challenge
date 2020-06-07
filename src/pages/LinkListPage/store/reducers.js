@@ -1,6 +1,14 @@
 import * as actionTypes from "./action-types";
+import { SORTING_ORDER } from "../../../constants";
+
 const initialState = {
   links: [],
+  order: SORTING_ORDER.DEFAULT,
+  page: {
+    pageNumber: 1,
+    pageCount: 3,
+    totalItemCount: 0,
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -8,12 +16,14 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_LINKS:
       return {
         ...state,
+        page: action.page,
       };
     case actionTypes.GET_LINKS_SUCCESS:
-      const sortedLinks = action.links.sort((a, b) => b.points - a.points);
+      const totalItemCount = action.totalItemCount;
       return {
         ...state,
-        links: sortedLinks,
+        links: action.links,
+        page: { ...state.page, totalItemCount },
       };
     case actionTypes.DELETE_LINK:
       return {
@@ -24,16 +34,41 @@ const reducer = (state = initialState, action) => {
         ...state,
         links: [...state.links.filter((link) => link.id !== action.id)],
       };
-    case actionTypes.SORT_LINKS:
+    case actionTypes.UP_VOTE_LINK:
       return {
         ...state,
-        links: state.links,
+        link: state.link,
       };
-
-    case actionTypes.SORT_LINKS_SUCCESS:
+    case actionTypes.UP_VOTE_LINK_SUCCESS:
       return {
         ...state,
-        links: action.links,
+        links: [
+          ...state.links.filter((link) => link.id !== action.link.id),
+          action.link,
+        ],
+      };
+    case actionTypes.DOWN_VOTE_LINK:
+      return {
+        ...state,
+        link: state.link,
+      };
+    case actionTypes.DOWN_VOTE_LINK_SUCCESS:
+      return {
+        ...state,
+        links: [
+          ...state.links.filter((link) => link.id !== action.link.id),
+          action.link,
+        ],
+      };
+    case actionTypes.SET_ORDER:
+      return {
+        ...state,
+        order: action.order,
+      };
+    case actionTypes.SET_PAGE:
+      return {
+        ...state,
+        page: { ...state.page, pageNumber: action.page },
       };
     default:
       return state;

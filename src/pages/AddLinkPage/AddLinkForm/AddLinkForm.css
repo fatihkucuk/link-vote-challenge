@@ -1,0 +1,21 @@
+.add-link-form {
+  position: relative;
+}
+
+.add-link-form .form-control {
+  cursor: initial;
+}
+
+.add-link-form .app-button {
+  position: absolute;
+  right: 0;
+}
+
+.add-link-form-header {
+  padding: 0 0 20px 0;
+}
+
+.add-link-page-navigator-container a {
+  color: #000;
+  font-weight: 600;
+}

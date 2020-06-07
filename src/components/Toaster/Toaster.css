@@ -1,0 +1,12 @@
+.toast-text {
+  display: inline;
+  color: #008000;
+}
+
+.toast-text.toast-link-name {
+  text-transform: uppercase;
+}
+
+.toast-text.error {
+  color: #f00;
+}

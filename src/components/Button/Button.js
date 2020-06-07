@@ -6,7 +6,11 @@ const Button = (props) => {
     props.onClick();
   };
   return (
-    <button className="app-button" onClick={clickHandler}>
+    <button
+      className={`app-button ${props.disabled ? "disable" : ""}`}
+      onClick={clickHandler}
+      disabled={props.disabled}
+    >
       {props.name}
     </button>
   );

@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./LinkListItem.css";
 import Box from "../../../../components/Box/Box";
 import ArrowIcon from "../../../../components/Icon/ArrowIcon";
 import DeleteIcon from "../../../../components/Icon/DeleteIcon";
 import PropTypes from "prop-types";
+import { upVoteLink, downVoteLink, getLinks } from "../../store/action-types";
 
 const LinkListItem = (props) => {
   const [showDeleteIcon, setShowDeleteIcon] = useState(false);
+  const order = useSelector((state) => state.listPageReducer.order);
+  const page = useSelector((state) => state.listPageReducer.page);
+  const dispatch = useDispatch();
+
   const headerStyle = {
     lineHeight: !props.showUrl && !props.showButtons && "100px",
   };
@@ -25,6 +31,16 @@ const LinkListItem = (props) => {
 
   const handleSubmit = () => {
     if (props.canSubmit) props.onSubmitButtonClicked();
+  };
+
+  const handleUpVote = () => {
+    dispatch(upVoteLink(props.link));
+    dispatch(getLinks({ page, order }));
+  };
+
+  const handleDownVote = () => {
+    dispatch(downVoteLink(props.link));
+    dispatch(getLinks({ page, order }));
   };
 
   return (
@@ -49,11 +65,11 @@ const LinkListItem = (props) => {
         )}
         {props.showButtons && (
           <div className="link-list-group-item-buttons">
-            <div className="up-vote-button">
+            <div className="up-vote-button" onClick={handleUpVote}>
               <ArrowIcon width="25" height="25" fill="#aaaaaa" rotateDeg="90" />
               <div className="vote-button-text">Up Vote</div>
             </div>
-            <div className="down-vote-button">
+            <div className="down-vote-button" onClick={handleDownVote}>
               <ArrowIcon
                 width="25"
                 height="25"

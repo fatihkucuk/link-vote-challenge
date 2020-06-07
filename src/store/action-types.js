@@ -1,8 +1,8 @@
-export const SET_LOADING = 'SET_LOADING';
+export const SET_TOASTER = "SET_TOASTER";
 
-export const setLoading = (loading) => {
+export const setToaster = (toaster) => {
   return {
-    type: SET_LOADING,
-    loading,
+    type: SET_TOASTER,
+    toaster,
   };
 };

@@ -20,6 +20,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         link: action.addedLink,
       };
+    case actionTypes.SET_LINK:
+      return {
+        ...state,
+        link: action.link,
+      };
     default:
       return state;
   }

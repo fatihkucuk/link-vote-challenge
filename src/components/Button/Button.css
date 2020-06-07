@@ -18,9 +18,14 @@
 }
 
 .app-button:hover {
-  background: #aaaaaa;
+  background-color: #aaaaaa;
 }
 
 .app-button:active {
-  background: #585858;
+  background-color: #585858;
+}
+
+.app-button.disable {
+  cursor: not-allowed;
+  background-color: #aaaaaa;
 }
