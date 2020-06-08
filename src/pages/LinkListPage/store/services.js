@@ -1,6 +1,17 @@
 import { takeLatest, put } from "redux-saga/effects";
-import * as actionTypes from "./action-types";
-import { setToaster } from "../../../store/action-types";
+import {
+  GET_LINKS,
+  DELETE_LINK,
+  UP_VOTE_LINK,
+  DOWN_VOTE_LINK,
+} from "./action-types";
+import {
+  getLinksSuccess as getLinksSuccessAction,
+  deleteLinkSuccess as deleteLinkSuccessAction,
+  upVoteLinkSuccess as upVoteLinkSuccessAction,
+  downVoteLinkSuccess as downVoteLinkSuccessAction,
+} from "./actions";
+import { setToaster } from "../../../store/actions";
 import { SORTING_ORDER, TOASTER_TYPE } from "../../../constants";
 
 export function* getLinks({ page, order }) {
@@ -19,7 +30,7 @@ export function* getLinks({ page, order }) {
       pageIndex * pageCount + pageCount
     );
     yield put(
-      actionTypes.getLinksSuccess({
+      getLinksSuccessAction({
         links: slicedLinks,
         totalItemCount: links.length,
       })
@@ -43,7 +54,7 @@ export function* deleteLink(action) {
     links = links.filter((link) => link.id !== action.id);
     const stringifiedLinks = JSON.stringify(links);
     localStorage.setItem("links", stringifiedLinks);
-    yield put(actionTypes.deleteLinkSuccess(action.id));
+    yield put(deleteLinkSuccessAction(action.id));
     yield put(
       setToaster({
         show: true,
@@ -72,7 +83,7 @@ export function* upVoteLink(action) {
     upVotedLink.updatedAt = new Date().getTime();
     const stringifiedLinks = JSON.stringify(links);
     localStorage.setItem("links", stringifiedLinks);
-    yield put(actionTypes.upVoteLinkSuccess(upVotedLink));
+    yield put(upVoteLinkSuccessAction(upVotedLink));
   } catch (error) {
     yield put(
       setToaster({
@@ -92,7 +103,7 @@ export function* downVoteLink(action) {
     downVotedLink.points--;
     const stringifiedLinks = JSON.stringify(links);
     localStorage.setItem("links", stringifiedLinks);
-    yield put(actionTypes.downVoteLinkSuccess(downVotedLink));
+    yield put(downVoteLinkSuccessAction(downVotedLink));
   } catch (error) {
     yield put(
       setToaster({
@@ -106,8 +117,8 @@ export function* downVoteLink(action) {
 }
 
 export default function* listPageServices() {
-  yield takeLatest(actionTypes.GET_LINKS, getLinks);
-  yield takeLatest(actionTypes.DELETE_LINK, deleteLink);
-  yield takeLatest(actionTypes.UP_VOTE_LINK, upVoteLink);
-  yield takeLatest(actionTypes.DOWN_VOTE_LINK, downVoteLink);
+  yield takeLatest(GET_LINKS, getLinks);
+  yield takeLatest(DELETE_LINK, deleteLink);
+  yield takeLatest(UP_VOTE_LINK, upVoteLink);
+  yield takeLatest(DOWN_VOTE_LINK, downVoteLink);
 }

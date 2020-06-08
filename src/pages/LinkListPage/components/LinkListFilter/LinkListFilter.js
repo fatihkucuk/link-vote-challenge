@@ -1,6 +1,6 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import { setOrder } from "../../store/action-types";
+import { setOrder } from "../../store/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { SORTING_ORDER } from "../../../../constants";
 const LinkListFilter = (props) => {

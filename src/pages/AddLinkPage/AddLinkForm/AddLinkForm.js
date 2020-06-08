@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import "./AddLinkForm.css";
 import Form from "react-bootstrap/Form";
 import Button from "../../../components/Button/Button";
-import { addLink } from "../store/action-types";
-import { setToaster } from "../../../store/action-types";
+import { addLink } from "../store/actions";
+import { setToaster } from "../../../store/actions";
 import { TOASTER_DELAY } from "../../../constants";
 
 const AddLinkForm = (props) => {

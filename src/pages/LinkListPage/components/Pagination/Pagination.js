@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Pager from "react-bootstrap/Pagination";
 import PropTypes from "prop-types";
-import { setPage } from "../../store/action-types";
-import { useSelector, useDispatch } from "react-redux";
+import { setPage } from "../../store/actions";
+import { useDispatch } from "react-redux";
 
 const Pagination = (props) => {
   const [pages, setPages] = useState([]);
 
   const dispatch = useDispatch();
-
-  // const page = useSelector((state) => state.listPageReducer.page);
 
   useEffect(() => {
     fillPagesArray();

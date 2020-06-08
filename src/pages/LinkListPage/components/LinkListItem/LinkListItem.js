@@ -5,7 +5,7 @@ import Box from "../../../../components/Box/Box";
 import ArrowIcon from "../../../../components/Icon/ArrowIcon";
 import DeleteIcon from "../../../../components/Icon/DeleteIcon";
 import PropTypes from "prop-types";
-import { upVoteLink, downVoteLink, getLinks } from "../../store/action-types";
+import { upVoteLink, downVoteLink, getLinks } from "../../store/actions";
 
 const LinkListItem = (props) => {
   const [showDeleteIcon, setShowDeleteIcon] = useState(false);

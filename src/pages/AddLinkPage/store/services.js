@@ -1,6 +1,7 @@
 import { put, takeLatest } from "redux-saga/effects";
-import * as actionTypes from "./action-types";
-import * as rootActionTypes from "../../../store/action-types";
+import { ADD_LINK } from "./action-types";
+import { addLinkSuccess as addLinkSuccessAction } from "./actions";
+import { setToaster as setToasterAction } from "../../../store/actions";
 import { v4 as uuidv4 } from "uuid";
 import { TOASTER_TYPE } from "../../../constants";
 
@@ -17,9 +18,9 @@ function* addLink({ link }) {
     links.push(newLink);
     const stringifiedLinks = JSON.stringify(links);
     localStorage.setItem("links", stringifiedLinks);
-    yield put(actionTypes.addLinkSuccess(newLink));
+    yield put(addLinkSuccessAction(newLink));
     yield put(
-      rootActionTypes.setToaster({
+      setToasterAction({
         show: true,
         linkName: newLink.name,
         message: "added.",
@@ -28,7 +29,7 @@ function* addLink({ link }) {
     );
   } catch (error) {
     yield put(
-      rootActionTypes.setToaster({
+      setToasterAction({
         show: true,
         linkName: "",
         message: error.message,
@@ -39,5 +40,5 @@ function* addLink({ link }) {
 }
 
 export default function* addLinkPageServices() {
-  yield takeLatest(actionTypes.ADD_LINK, addLink);
+  yield takeLatest(ADD_LINK, addLink);
 }
