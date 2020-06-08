@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
-import { Switch, Route, HashRouter, Redirect } from "react-router-dom";
+import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import routes from "./routes";
 import Container from "react-bootstrap/Container";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Container fluid>
         <Header />
         <Switch>
@@ -17,7 +17,7 @@ function App() {
           })}
         </Switch>
       </Container>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
