@@ -4,6 +4,8 @@ import "./AddLinkForm.css";
 import Form from "react-bootstrap/Form";
 import Button from "../../../components/Button/Button";
 import { addLink } from "../store/action-types";
+import { setToaster } from "../../../store/action-types";
+import { TOASTER_DELAY } from "../../../constants";
 
 const AddLinkForm = (props) => {
   const [name, setName] = useState("");
@@ -25,6 +27,19 @@ const AddLinkForm = (props) => {
       url: url,
     };
     dispatch(addLink(newLink));
+    clearFormData();
+    setTimeout(() => {
+      dispatch(
+        setToaster({
+          show: false,
+        })
+      );
+    }, TOASTER_DELAY);
+  };
+
+  const clearFormData = () => {
+    setName("");
+    setUrl("");
   };
 
   return (
@@ -38,6 +53,7 @@ const AddLinkForm = (props) => {
             placeholder="e.g. Alphabet"
             onChange={handleLinkNameChange}
             size="lg"
+            value={name}
           />
           {/* <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -51,6 +67,7 @@ const AddLinkForm = (props) => {
             placeholder="e.g. http://abc.xyz"
             onChange={handleLinkUrlChange}
             size="lg"
+            value={url}
           />
         </Form.Group>
         <Form.Group>
