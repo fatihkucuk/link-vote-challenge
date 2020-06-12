@@ -41,10 +41,14 @@
 
 .link-list-group-item-right {
   margin-left: 15px;
+  overflow: hidden;
 }
 
 .link-list-group-item-header {
   margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .link-list-group-item-url {

@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import LinkList from "./components/LinkList/LinkList";
 import Pagination from "./components/Pagination/Pagination";
-import "./LinkListPage.css";
-import { useSelector } from "react-redux";
 import Toaster from "../../components/Toaster/Toaster";
+import { store } from "../../store/reducers";
+import "./LinkListPage.css";
 
 const LinkListPage = (props) => {
-  const links = useSelector((state) => state.listPageReducer.links);
-  const page = useSelector((state) => state.listPageReducer.page);
-  const toaster = useSelector((state) => state.rootReducer.toaster);
+  const {
+    state: {
+      links,
+      page: { pageNumber, pageCount, totalItemCount },
+      toaster,
+    },
+  } = useContext(store);
+
   return (
     <div className="link-list-page-container">
       {toaster.show && <Toaster toaster={toaster} />}
@@ -18,9 +23,9 @@ const LinkListPage = (props) => {
       {links.length > 0 && (
         <div className="pagination-container">
           <Pagination
-            totalItemCount={page.totalItemCount}
-            pageNumber={page.pageNumber}
-            pageCount={page.pageCount}
+            totalItemCount={totalItemCount}
+            pageNumber={pageNumber}
+            pageCount={pageCount}
           ></Pagination>
         </div>
       )}

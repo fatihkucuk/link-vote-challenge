@@ -1,6 +1,7 @@
 import React from "react";
-import "./LinkSubmit.css";
 import Box from "../../../../components/Box/Box";
+import "./LinkSubmit.css";
+
 const LinkSubmit = (props) => {
   return (
     <div className="add-link-button-container">

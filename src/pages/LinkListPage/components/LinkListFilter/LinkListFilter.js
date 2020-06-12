@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Form from "react-bootstrap/Form";
-import { setOrder } from "../../store/action-types";
-import { useSelector, useDispatch } from "react-redux";
 import { SORTING_ORDER } from "../../../../constants";
+import { store } from "../../../../store/reducers";
+
 const LinkListFilter = (props) => {
-  const defaultOrder = useSelector((state) => state.listPageReducer.order);
-  const dispatch = useDispatch();
+  const context = useContext(store);
+  const {
+    state: { order },
+  } = context;
+
   const handleChange = (e) => {
-    dispatch(setOrder(e.target.value));
     props.sortSelectionChanged(e.target.value);
   };
+
   return (
     <div className="link-list-filter">
-      <Form.Control
-        as="select"
-        onChange={handleChange}
-        defaultValue={defaultOrder}
-      >
+      <Form.Control as="select" onChange={handleChange} defaultValue={order}>
         <option value={SORTING_ORDER.DESC}>Most Voted</option>
         <option value={SORTING_ORDER.ASC}>Less Voted</option>
       </Form.Control>

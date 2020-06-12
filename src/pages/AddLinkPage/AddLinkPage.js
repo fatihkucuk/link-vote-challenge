@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import AddLinkForm from "./AddLinkForm/AddLinkForm";
-import { NavLink } from "react-router-dom";
 import ArrowIcon from "../../components/Icon/ArrowIcon";
-import "./AddLinkPage.css";
-import { useSelector } from "react-redux";
 import Toaster from "../../components/Toaster/Toaster";
+import { store } from "../../store/reducers";
+import { NavLink } from "react-router-dom";
+import "./AddLinkPage.css";
 
 const AddLinkPage = (props) => {
-  const toaster = useSelector((state) => state.rootReducer.toaster);
+  const context = useContext(store);
+  const {
+    state: { toaster },
+  } = context;
 
   return (
     <div className="add-link-page-container">
@@ -18,7 +21,6 @@ const AddLinkPage = (props) => {
           Return to list
         </NavLink>
       </div>
-
       <AddLinkForm />
     </div>
   );

@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import "./LinkListItem.css";
 import Box from "../../../../components/Box/Box";
 import ArrowIcon from "../../../../components/Icon/ArrowIcon";
 import DeleteIcon from "../../../../components/Icon/DeleteIcon";
 import PropTypes from "prop-types";
-import { upVoteLink, downVoteLink, getLinks } from "../../store/action-types";
+import "./LinkListItem.css";
 
 const LinkListItem = (props) => {
   const [showDeleteIcon, setShowDeleteIcon] = useState(false);
-  const order = useSelector((state) => state.listPageReducer.order);
-  const page = useSelector((state) => state.listPageReducer.page);
-  const dispatch = useDispatch();
 
   const headerStyle = {
     lineHeight: !props.showUrl && !props.showButtons && "100px",
@@ -34,13 +29,11 @@ const LinkListItem = (props) => {
   };
 
   const handleUpVote = () => {
-    dispatch(upVoteLink(props.link));
-    dispatch(getLinks({ page, order }));
+    props.onUpVoteClicked(props.link);
   };
 
   const handleDownVote = () => {
-    dispatch(downVoteLink(props.link));
-    dispatch(getLinks({ page, order }));
+    props.onDownVoteClicked(props.link);
   };
 
   return (
@@ -87,6 +80,7 @@ const LinkListItem = (props) => {
         <div
           className="link-list-group-item-delete-icon"
           onClick={deleteIconClicked}
+          title="Delete"
         >
           <DeleteIcon />
         </div>

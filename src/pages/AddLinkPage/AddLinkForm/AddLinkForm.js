@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import "./AddLinkForm.css";
+import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "../../../components/Button/Button";
-import { addLink } from "../store/action-types";
-import { setToaster } from "../../../store/action-types";
+import { addLinkSuccess, setToaster } from "../../../store/actions";
 import { TOASTER_DELAY } from "../../../constants";
+import { store } from "../../../store/reducers";
+import { addLink } from "../../../helpers/localStorageHelper";
+import "./AddLinkForm.css";
 
 const AddLinkForm = (props) => {
+  const context = useContext(store);
+  const { dispatch } = context;
+
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
-
-  const dispatch = useDispatch();
 
   const handleLinkNameChange = (e) => {
     setName(e.target.value);
@@ -26,7 +27,8 @@ const AddLinkForm = (props) => {
       name: name,
       url: url,
     };
-    dispatch(addLink(newLink));
+    const addedLink = addLink(newLink);
+    dispatch(addLinkSuccess(addedLink));
     clearFormData();
     setTimeout(() => {
       dispatch(
@@ -56,7 +58,6 @@ const AddLinkForm = (props) => {
             value={name}
           />
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Link URL</Form.Label>
           <Form.Control
