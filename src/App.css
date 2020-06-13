@@ -57,6 +57,11 @@ a:hover {
   color: #000;
 }
 
+.modal-body {
+  max-height: calc(100vh - 50px);
+  overflow: auto;
+}
+
 .modal-content {
   border-radius: 0;
 }
@@ -116,4 +121,24 @@ a:hover {
 
 .form-label {
   font-size: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

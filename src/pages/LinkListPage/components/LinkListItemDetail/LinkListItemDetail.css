@@ -1,0 +1,201 @@
+/* .color-theme-hb-purple {
+  color: #601a73;
+}
+.color-theme-hb-blue {
+  color: #6756a6;
+}
+.color-theme-hb-blue-light {
+  color: #4bd4f2;
+}
+.color-theme-hb-4-orange {
+  color: #f2921d;
+}
+.color-theme-hb-5-orange-dark {
+  color: #f25d27;
+} */
+
+.link-list-item-detail-container {
+  position: relative;
+}
+
+.link-list-item-detail-container h3,
+.link-list-item-detail-container a,
+.link-list-item-detail-container p {
+  color: #000;
+}
+
+.point-container {
+  display: inline-block;
+  border-left: 3px solid #5c1f00a1;
+  padding-bottom: 45px;
+}
+
+.circle-container {
+  position: relative;
+  display: inline-block;
+}
+
+.link-info {
+  display: inline-block;
+  padding: 30px;
+  font-family: sans-serif;
+}
+
+.link-info.link-points {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: 700;
+}
+
+.link-info.link-name {
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  font-size: 25px;
+  transform: translate(-50%, -5%);
+}
+
+.link-info.description {
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.link-info.link-point {
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.circle-hb {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 12px solid transparent;
+  background-size: 100% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(white, white),
+    linear-gradient(30deg, #beb7b7 36%, lightgrey 30%),
+    linear-gradient(120deg, yellow 36%, lightgrey 30%),
+    linear-gradient(300deg, blue 36%, lightgrey 30%),
+    linear-gradient(210deg, green 36%, lightgrey 30%);
+  background-position: center center, left top, right top, left bottom,
+    right bottom;
+  background-origin: content-box, border-box, border-box, border-box, border-box;
+  background-clip: content-box, border-box, border-box, border-box, border-box;
+  display: inline-block;
+}
+
+#color-theme-hb-purple {
+  stroke: #601a73 !important;
+}
+#color-theme-hb-blue {
+  stroke: #6756a6 !important;
+  stroke-dasharray: 35.5, 284;
+  stroke-dashoffset: -159.75;
+}
+#color-theme-hb-blue-light {
+  stroke: #4bd4f2 !important;
+  stroke-dasharray: 35.5, 284;
+  stroke-dashoffset: -88.75;
+}
+#color-theme-hb-4-orange {
+  stroke: #f2921d !important;
+  stroke-dasharray: 35.5, 284;
+  stroke-dashoffset: -17.75;
+}
+#color-theme-hb-5-orange-dark {
+  stroke: #f25d27 !important;
+  stroke-dasharray: 35.5, 284;
+  stroke-dashoffset: -230.75;
+}
+
+@media only screen and (max-width: 991px) {
+  .link-info.link-name {
+    display: block;
+  }
+}
+
+.circle-svg {
+  height: 100px;
+  width: 100px;
+}
+.circle-svg circle {
+  stroke-width: 5px;
+  fill: transparent;
+}
+.hb-circle-color-blue-light {
+  stroke: #4bd4f2;
+  stroke-dasharray: 107, 229;
+  stroke-dashoffset: -249.75;
+}
+.hb-circle-color-orange {
+  stroke: #f2921d;
+  stroke-dasharray: 55.5, 296;
+  stroke-dashoffset: -122;
+}
+.hb-circle-color-orange-dark {
+  stroke: #f25d27;
+  stroke-dasharray: 72.5;
+  stroke-dashoffset: -176.75;
+}
+.hb-circle-color-blue {
+  stroke: #6ac6b7;
+  stroke-dasharray: 69.5, 284;
+  stroke-dashoffset: -65.75;
+}
+.hb-circle-color-purple {
+  stroke: #601a73;
+  stroke-dasharray: 103.5, 225;
+  stroke-dashoffset: -290.75;
+}
+
+.hb-circle-color-purple.second {
+  stroke: #601a73;
+  stroke-dasharray: 32.5, 284;
+  stroke-dashoffset: -418.75;
+}
+
+.circle-text {
+  fill: #f5921d;
+  stroke-width: 25px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.redirect-button {
+  background-color: #f2921d;
+  color: #fff;
+  width: 300px;
+  height: 70px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+}
+
+.redirect-button:hover {
+  background-color: #e48613;
+}
+
+.redirect-button:active {
+  background-color: #c5710c;
+  outline: none;
+}
+
+.redirect-button:focus {
+  outline: none;
+}

@@ -12,8 +12,9 @@ const LinkListItem = (props) => {
     lineHeight: !props.showUrl && !props.showButtons && "100px",
   };
 
-  const deleteIconClicked = () => {
+  const deleteIconClicked = (e) => {
     props.onDeleteIconClicked(props.link.id);
+    e.stopPropagation();
   };
 
   const handleMouseEnter = () => {
@@ -24,16 +25,20 @@ const LinkListItem = (props) => {
     setShowDeleteIcon(false);
   };
 
-  const handleSubmit = () => {
-    if (props.canSubmit) props.onSubmitButtonClicked();
+  const handleSubmit = (link) => {
+    props.canSubmit
+      ? props.onSubmitButtonClicked()
+      : props.onShowDetailClicked(link);
   };
 
-  const handleUpVote = () => {
+  const handleUpVote = (e) => {
     props.onUpVoteClicked(props.link);
+    e.stopPropagation();
   };
 
-  const handleDownVote = () => {
+  const handleDownVote = (e) => {
     props.onDownVoteClicked(props.link);
+    e.stopPropagation();
   };
 
   return (
@@ -42,7 +47,7 @@ const LinkListItem = (props) => {
       style={{ cursor: props.cursor }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleSubmit}
+      onClick={handleSubmit.bind(null, props.link)}
     >
       <div className="link-list-group-item-left">
         <Box text={props.boxText} subtext={props.boxSubtext} />
@@ -54,7 +59,11 @@ const LinkListItem = (props) => {
           </h4>
         )}
         {props.showUrl && (
-          <a href={props.link.url} className="link-list-group-item-url">
+          <a
+            href={props.link.url}
+            onClick={(e) => e.stopPropagation()}
+            className="link-list-group-item-url"
+          >
             ({props.link.url})
           </a>
         )}

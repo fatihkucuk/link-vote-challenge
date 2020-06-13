@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import LinkListItem from "../LinkListItem/LinkListItem";
 import LinkListFilter from "../LinkListFilter/LinkListFilter";
-import Modal from "react-bootstrap/Modal";
 import Button from "../../../../components/Button/Button";
+import Popup from "../../../../components/Popup/Popup";
+import LinkListItemDetail from "../LinkListItemDetail/LinkListItemDetail";
 import { withRouter } from "react-router-dom";
 import { store } from "../../../../store/reducers";
 import {
@@ -31,7 +32,9 @@ export const LinkList = (props) => {
   } = context;
 
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
+  const [showDetailPopup, setShowDetailPopup] = useState(false);
   const [selectedLinkToDelete, setSelectedLinkToDelete] = useState();
+  const [selectedLinkToShowDetail, setSelectedLinkToShowDetail] = useState();
 
   useEffect(() => {
     const links = getLinks();
@@ -48,7 +51,7 @@ export const LinkList = (props) => {
 
   const onDeleteIconClicked = (link) => {
     setSelectedLinkToDelete(link);
-    openPopup();
+    openConfirmPopup();
   };
 
   const onUpVoteClicked = (link) => {
@@ -61,9 +64,15 @@ export const LinkList = (props) => {
     dispatch(downVoteLinkSuccess(downVotedLink));
   };
 
+  const onShowDetailClicked = (link) => {
+    setSelectedLinkToShowDetail(link);
+    openDetailPopup();
+  };
+
   const handleConfirm = () => {
     const deletedLink = deleteLink(selectedLinkToDelete.id);
     dispatch(deleteLinkSuccess({ link: deletedLink }));
+    closeConfirmPopup();
     setTimeout(() => {
       dispatch(
         setToaster({
@@ -71,19 +80,26 @@ export const LinkList = (props) => {
         })
       );
     }, TOASTER_DELAY);
-    closePopup();
   };
 
   const handleSort = (order) => {
     dispatch(setOrder(order));
   };
 
-  const openPopup = () => {
+  const openConfirmPopup = () => {
     setShowConfirmPopup(true);
   };
 
-  const closePopup = () => {
+  const closeConfirmPopup = () => {
     setShowConfirmPopup(false);
+  };
+
+  const openDetailPopup = () => {
+    setShowDetailPopup(true);
+  };
+
+  const closeDetailPopup = () => {
+    setShowDetailPopup(false);
   };
 
   const navigateToAddLink = () => {
@@ -101,9 +117,32 @@ export const LinkList = (props) => {
           onDeleteIconClicked={onDeleteIconClicked.bind(null, link)}
           onUpVoteClicked={onUpVoteClicked.bind(null, link)}
           onDownVoteClicked={onDownVoteClicked.bind(null, link)}
+          onShowDetailClicked={onShowDetailClicked.bind(null, link)}
         />
       );
     });
+
+  const ConfirmDialogBody = (
+    <React.Fragment>
+      <p className="popup-text question">Do you want to remove:</p>
+      <h4 className="popup-text link-name">
+        {selectedLinkToDelete && selectedLinkToDelete.name}
+      </h4>
+    </React.Fragment>
+  );
+
+  const ConfirmDialogFooter = (
+    <React.Fragment>
+      <Button name="OK" onClick={handleConfirm}></Button>
+      <Button name="Cancel" onClick={closeConfirmPopup}></Button>
+    </React.Fragment>
+  );
+
+  const LinkDetail = (
+    <React.Fragment>
+      <LinkListItemDetail link={selectedLinkToShowDetail} />
+    </React.Fragment>
+  );
 
   return (
     <React.Fragment>
@@ -128,21 +167,23 @@ export const LinkList = (props) => {
         )}
         {linkListItems}
       </ul>
-      <Modal show={showConfirmPopup} onHide={closePopup} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Remove Link</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p className="popup-text question">Do you want to remove:</p>
-          <h4 className="popup-text link-name">
-            {selectedLinkToDelete && selectedLinkToDelete.name}
-          </h4>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button name="OK" onClick={handleConfirm}></Button>
-          <Button name="Cancel" onClick={closePopup}></Button>
-        </Modal.Footer>
-      </Modal>
+      {showConfirmPopup && (
+        <Popup
+          show={showConfirmPopup}
+          title="Remove Link"
+          body={ConfirmDialogBody}
+          footer={ConfirmDialogFooter}
+          onClosePopup={closeConfirmPopup}
+        />
+      )}
+      {showDetailPopup && (
+        <Popup
+          show={showDetailPopup}
+          body={LinkDetail}
+          size="lg"
+          onClosePopup={closeDetailPopup}
+        />
+      )}
     </React.Fragment>
   );
 };
