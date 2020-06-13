@@ -1,0 +1,11 @@
+export const GET_LINKS = "GET_LINKS";
+export const GET_LINKS_SUCCESS = "GET_LINKS_SUCCESS";
+export const DELETE_LINK = "DELETE_LINK";
+export const DELETE_LINK_SUCCESS = "DELETE_LINK_SUCCESS";
+export const UP_VOTE_LINK = "UP_VOTE_LINK";
+export const UP_VOTE_LINK_SUCCESS = "UP_VOTE_LINK_SUCCESS";
+export const DOWN_VOTE_LINK = "DOWN_VOTE_LINK";
+export const DOWN_VOTE_LINK_SUCCESS = "DOWN_VOTE_LINK_SUCCESS";
+export const SET_ORDER = "SET_ORDER";
+export const SET_PAGE = "SET_PAGE";
+export const SET_TOASTER = "SET_TOASTER";

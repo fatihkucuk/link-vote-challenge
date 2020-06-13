@@ -7,6 +7,7 @@ const Button = (props) => {
   };
   return (
     <button
+      id="button-testid"
       className={`app-button ${props.disabled ? "disable" : ""}`}
       onClick={clickHandler}
       disabled={props.disabled}
