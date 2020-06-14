@@ -1,11 +1,7 @@
 import React from "react";
 import "./LinkListItemDetail.css";
 
-const LinkListItem = (props) => {
-  const navigate = (url) => {
-    window.open(url, "_blank");
-  };
-
+const LinkListItem = () => {
   return (
     <div className="link-list-item-detail-body">
       <p className="link-info description">
