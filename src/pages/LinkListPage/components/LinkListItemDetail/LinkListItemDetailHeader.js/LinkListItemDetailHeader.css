@@ -74,11 +74,6 @@
   text-align: center;
 }
 
-.link-info.link-name::before {
-  content: "Link Name: ";
-  color: #000;
-}
-
 .link-name-container {
   align-self: center;
 }
@@ -101,11 +96,5 @@
 
   .circle-container {
     align-self: center;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .link-info.link-name::before {
-    content: "";
   }
 }
