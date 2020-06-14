@@ -3,6 +3,7 @@ import LinkListItem from "../LinkListItem/LinkListItem";
 import LinkListFilter from "../LinkListFilter/LinkListFilter";
 import Button from "../../../../components/Button/Button";
 import Popup from "../../../../components/Popup/Popup";
+import CustomPopup from "../../../../components/CustomPopup/CustomPopup";
 import LinkListItemDetail from "../LinkListItemDetail/LinkListItemDetail";
 import { withRouter } from "react-router-dom";
 import { store } from "../../../../store/reducers";
@@ -23,6 +24,8 @@ import {
 import { sortLinks, paginateLinks } from "../../../../helpers/linkHelper";
 import "./LinkList.css";
 import { TOASTER_DELAY } from "../../../../constants";
+import LinkListItemDetailHeader from "../LinkListItemDetail/LinkListItemDetailHeader.js/LinkListItemDetailHeader";
+import LinkListItemDetailFooter from "../LinkListItemDetail/LinkListItemDetailFooter/LinkListItemDetailFooter";
 
 export const LinkList = (props) => {
   const context = useContext(store);
@@ -138,9 +141,27 @@ export const LinkList = (props) => {
     </React.Fragment>
   );
 
-  const LinkDetail = (
+  const LinkDetailHeader = (
+    <React.Fragment>
+      {selectedLinkToShowDetail && (
+        <LinkListItemDetailHeader
+          linkName={selectedLinkToShowDetail.name}
+          linkUrl={selectedLinkToShowDetail.url}
+          linkPoints={selectedLinkToShowDetail.points}
+        />
+      )}
+    </React.Fragment>
+  );
+
+  const LinkDetailBody = (
     <React.Fragment>
       <LinkListItemDetail link={selectedLinkToShowDetail} />
+    </React.Fragment>
+  );
+
+  const LinkDetailFooter = (
+    <React.Fragment>
+      {selectedLinkToShowDetail && <LinkListItemDetailFooter />}
     </React.Fragment>
   );
 
@@ -176,11 +197,21 @@ export const LinkList = (props) => {
           onClosePopup={closeConfirmPopup}
         />
       )}
-      {showDetailPopup && (
+      {/* {showDetailPopup && (
         <Popup
           show={showDetailPopup}
           body={LinkDetail}
           size="lg"
+          onClosePopup={closeDetailPopup}
+        />
+      )} */}
+
+      {showDetailPopup && (
+        <CustomPopup
+          showCloseIcon={true}
+          header={LinkDetailHeader}
+          body={LinkDetailBody}
+          footer={LinkDetailFooter}
           onClosePopup={closeDetailPopup}
         />
       )}

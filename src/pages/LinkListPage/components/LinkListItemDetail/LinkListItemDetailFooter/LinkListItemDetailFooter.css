@@ -1,0 +1,32 @@
+.link-list-item-detail-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.redirect-button {
+  background-color: #f2921d;
+  color: #fff;
+  width: 300px;
+  height: 70px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+}
+
+.redirect-button:hover {
+  background-color: #e48613;
+}
+
+.redirect-button:active {
+  background-color: #c5710c;
+  outline: none;
+}
+
+.redirect-button:focus {
+  outline: none;
+}

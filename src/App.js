@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import { Switch, Route, HashRouter, Redirect } from "react-router-dom";
 import routes from "./routes";
 import Container from "react-bootstrap/Container";
+import CustomPopup from "./components/CustomPopup/CustomPopup";
 
 function App() {
   return (

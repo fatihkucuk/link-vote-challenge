@@ -1,0 +1,104 @@
+.link-list-item-detail-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-container {
+  align-self: flex-start;
+  position: relative;
+}
+
+.circle-svg {
+  height: 100px;
+  width: 100px;
+}
+.circle-svg circle {
+  stroke-width: 5px;
+  fill: transparent;
+}
+.hb-circle-color-blue-light {
+  stroke: #4bd4f2;
+  stroke-dasharray: 107, 229;
+  stroke-dashoffset: -249.75;
+}
+.hb-circle-color-orange {
+  stroke: #f2921d;
+  stroke-dasharray: 55.5, 296;
+  stroke-dashoffset: -122;
+}
+.hb-circle-color-orange-dark {
+  stroke: #f25d27;
+  stroke-dasharray: 72.5;
+  stroke-dashoffset: -176.75;
+}
+.hb-circle-color-blue {
+  stroke: #6ac6b7;
+  stroke-dasharray: 69.5, 284;
+  stroke-dashoffset: -65.75;
+}
+.hb-circle-color-purple {
+  stroke: #601a73;
+  stroke-dasharray: 103.5, 225;
+  stroke-dashoffset: -290.75;
+}
+
+.hb-circle-color-purple.second {
+  stroke: #601a73;
+  stroke-dasharray: 32.5, 284;
+  stroke-dashoffset: -418.75;
+}
+
+.circle-text {
+  fill: #f5921d;
+  stroke-width: 25px;
+}
+
+.link-info.link-points {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: 700;
+}
+
+.link-info.link-name {
+  display: inline;
+  font-weight: 600;
+  font-size: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 20px;
+}
+
+.link-info.link-name::before {
+  content: "Link Name: ";
+  color: #000;
+}
+
+.link-name-container {
+  align-self: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .link-list-item-detail-header {
+    flex-direction: column-reverse;
+  }
+
+  .link-info.link-name {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .circle-container {
+    align-self: center;
+  }
+}
