@@ -7,26 +7,11 @@ export const setToaster = (toaster) => {
   };
 };
 
-export const getLinks = ({ page, order }) => {
-  return {
-    type: actionTypes.GET_LINKS,
-    page,
-    order,
-  };
-};
-
 export const getLinksSuccess = ({ links, totalItemCount }) => {
   return {
     type: actionTypes.GET_LINKS_SUCCESS,
     links,
     totalItemCount,
-  };
-};
-
-export const deleteLink = (id) => {
-  return {
-    type: actionTypes.DELETE_LINK,
-    id,
   };
 };
 
@@ -37,23 +22,9 @@ export const deleteLinkSuccess = ({ link }) => {
   };
 };
 
-export const upVoteLink = (link) => {
-  return {
-    type: actionTypes.UP_VOTE_LINK,
-    link,
-  };
-};
-
 export const upVoteLinkSuccess = (link) => {
   return {
     type: actionTypes.UP_VOTE_LINK_SUCCESS,
-    link,
-  };
-};
-
-export const downVoteLink = (link) => {
-  return {
-    type: actionTypes.DOWN_VOTE_LINK,
     link,
   };
 };
@@ -76,13 +47,6 @@ export const setPage = (page) => {
   return {
     type: actionTypes.SET_PAGE,
     page,
-  };
-};
-
-export const addLink = (link) => {
-  return {
-    type: actionTypes.ADD_LINK,
-    link: link,
   };
 };
 
