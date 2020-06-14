@@ -121,6 +121,7 @@ export const LinkList = (props) => {
           onUpVoteClicked={onUpVoteClicked.bind(null, link)}
           onDownVoteClicked={onDownVoteClicked.bind(null, link)}
           onShowDetailClicked={onShowDetailClicked.bind(null, link)}
+          cursor="pointer"
         />
       );
     });
