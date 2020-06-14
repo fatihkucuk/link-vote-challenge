@@ -3,7 +3,7 @@
 This is a link vote application. You can add/delete links. In addition you can up vote and down vote the link points.
 Also there is a sorting option which sorts the link as most voted or less voted.
 
-In this project I used React with hooks, React-Router, Redux and Redux-Saga for state management and React-Bootstrap as UI Library.
+In this project I used React with hooks, React-Router, Context Api for state management and React-Bootstrap as UI Library.
 
 All the datas are coming from the localStorage and also saving there.
 
