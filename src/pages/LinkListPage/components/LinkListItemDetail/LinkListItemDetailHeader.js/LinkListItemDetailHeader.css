@@ -71,6 +71,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0 20px;
+  text-align: center;
 }
 
 .link-info.link-name::before {
@@ -100,5 +101,11 @@
 
   .circle-container {
     align-self: center;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .link-info.link-name::before {
+    content: "";
   }
 }

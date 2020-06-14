@@ -18,16 +18,23 @@
   padding: 20px;
   position: relative;
   animation: "fade left";
+  animation-name: modalFade;
+  animation-duration: 0.3s;
 }
 
-.popup-header {
-  margin-bottom: 15px;
+@keyframes modalFade {
+  from {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.popup-body {
-  margin-bottom: 15px;
-}
-
+.popup-header,
+.popup-body,
 .popup-footer {
   margin-bottom: 15px;
 }
@@ -54,5 +61,10 @@
 @media only screen and (max-width: 450px) {
   .popup-content {
     width: 85%;
+  }
+  .popup-header,
+  .popup-body,
+  .popup-footer {
+    margin-bottom: 0;
   }
 }
