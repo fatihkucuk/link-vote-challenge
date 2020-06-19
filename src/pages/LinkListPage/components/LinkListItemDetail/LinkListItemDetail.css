@@ -2,18 +2,6 @@
   position: relative;
 }
 
-.link-list-item-detail-body h3,
-.link-list-item-detail-body a,
-.link-list-item-detail-body p {
-  color: #000;
-}
-
-.point-container {
-  display: inline-block;
-  border-left: 3px solid #5c1f00a1;
-  padding-bottom: 45px;
-}
-
 .link-info {
   display: inline-block;
   padding: 30px;
@@ -24,4 +12,5 @@
   font-weight: 600;
   letter-spacing: 1px;
   text-align: center;
+  color: #000;
 }
