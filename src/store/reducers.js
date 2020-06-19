@@ -45,6 +45,10 @@ const StateProvider = ({ children }) => {
           page: { ...state.page, totalItemCount },
         };
       case actionTypes.DELETE_LINK_SUCCESS:
+        let pageNumber = state.page.pageNumber;
+        if (state.links.length === 1) {
+          pageNumber--;
+        }
         return {
           ...state,
           links: [...state.links.filter((link) => link.id !== action.link.id)],
@@ -54,6 +58,7 @@ const StateProvider = ({ children }) => {
             message: "removed.",
             toasterType: TOASTER_TYPE.SUCCESS,
           },
+          page: { ...state.page, pageNumber },
         };
       case actionTypes.UP_VOTE_LINK_SUCCESS:
         return {
